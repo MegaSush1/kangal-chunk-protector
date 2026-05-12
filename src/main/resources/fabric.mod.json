@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "kangalchunkprotector",
+	"version": "${version}",
+	"name": "kangal_chunk_protector",
+	"description": "A mod made for chunk protection",
+	"authors": [
+		"MegaSushi"
+	],
+	"contact": {
+		"homepage": "https://github.com/MegaSush1",
+		"sources": ""
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/kangalchunkprotector/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"kangal.chunk_protector.Kangal_chunk_protector"
+		],
+		"client": [
+			"kangal.chunk_protector.client.Kangal_chunk_protectorClient"
+		],
+		"fabric-datagen": [
+			"kangal.chunk_protector.client.Kangal_chunk_protectorDataGenerator"
+		]
+	},
+	"mixins": [
+		"kangalchunkprotector.mixins.json",
+		{
+			"config": "kangalchunkprotector.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
