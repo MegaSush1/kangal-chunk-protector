@@ -1,6 +1,5 @@
 package kangal.chunk_protector;
 
-import kangal.chunk_protector.protection.ProtectedChunkManager;
 import kangal.chunk_protector.protection.ProtectionUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
