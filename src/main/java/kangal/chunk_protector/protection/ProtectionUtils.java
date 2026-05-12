@@ -1,6 +1,8 @@
 package kangal.chunk_protector.protection;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.permissions.Permission;
+import net.minecraft.server.permissions.PermissionLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -68,6 +70,14 @@ public class ProtectionUtils {
         }
 
         return true;
+    }
+
+    public static boolean bypass(Player player){
+
+        if (player.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.OWNERS))){
+            return true;
+        }
+        return false;
     }
 
 }
