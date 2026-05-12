@@ -15,13 +15,14 @@ public class ProtectionEvents {
 
         // BLOCK BREAK
         PlayerBlockBreakEvents.BEFORE.register((level, player, pos, state, blockEntity)->{
-            MOD_LOGGER.info(MOD_ID + ": BlockBreakEvents.BEFORE");
+            //MOD_LOGGER.info(MOD_ID + ": BlockBreakEvents.BEFORE");
+
             return ProtectionUtils.canModify(player, pos);
         });
 
         // BLOCK PLACE
         UseBlockCallback.EVENT.register((player, level, interactionHand, blockHitResult) ->{
-            MOD_LOGGER.info(MOD_ID + ": UseBlockCallback.EVENT");
+            //MOD_LOGGER.info(MOD_ID + ": UseBlockCallback.EVENT");
 
             if(!ProtectionUtils.canModify(player, blockHitResult.getBlockPos())) {
                 return InteractionResult.FAIL;
@@ -32,7 +33,7 @@ public class ProtectionEvents {
 
         // PLAYER ATTACK ENTITY
         AttackEntityCallback.EVENT.register((player, level, interactionHand, entity, entityHitResult) -> {
-            MOD_LOGGER.info(MOD_ID + ": AttackEntityCallback.EVENT");
+            //MOD_LOGGER.info(MOD_ID + ": AttackEntityCallback.EVENT");
 
             if (!ProtectionUtils.canAttack(player, entity)) {
                 return InteractionResult.FAIL;
@@ -42,7 +43,8 @@ public class ProtectionEvents {
 
         // ENTITY DAMAGE
         ServerLivingEntityEvents.ALLOW_DAMAGE.register((livingEntity, damageSource, v) ->{
-            MOD_LOGGER.info(MOD_ID + ": ServerLivingEntityEvents.ALLOW_DAMAGE");
+            //MOD_LOGGER.info(MOD_ID + ": ServerLivingEntityEvents.ALLOW_DAMAGE");
+
             return ProtectionUtils.canDamage(livingEntity, damageSource);
         });
 
