@@ -1,14 +1,17 @@
 {
-	"required": true,
-	"package": "kangal.chunk_protector.mixin",
-	"compatibilityLevel": "JAVA_25",
-	"mixins": [
-		"ExampleMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "kangal.chunk_protector.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "BlockItemMixin",
+    "ExampleMixin",
+    "ExplosionMixin",
+    "ItemStackMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }
