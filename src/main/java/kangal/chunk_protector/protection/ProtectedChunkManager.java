@@ -1,48 +1,32 @@
 package kangal.chunk_protector.protection;
 
-import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
-import it.unimi.dsi.fastutil.longs.LongSet;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 
 import java.awt.*;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class ProtectedChunkManager {
 
-    private static final Map<ResourceKey<Level>, LongSet> PROTECTED_CHUNKS = new HashMap<>();
+    public static void addProtectedChunk(ServerLevel world, ChunkPos chunkPos){
 
-    public static void addProtectedChunk(Level world, ChunkPos chunkPos){
-        long chunk = chunkPos.pack();
-
-        PROTECTED_CHUNKS
-                .computeIfAbsent(
-                        world.dimension(),
-                        key -> new LongOpenHashSet()
-                )
-                .add(chunk);
+        ProtectionSavedData.get(world.getServer()).protectChunk(world,chunkPos);
     }
 
-    public static void removeProtectedChunk(Level world, ChunkPos chunkPos){
+    public static void removeProtectedChunk(ServerLevel world, ChunkPos chunkPos){
 
-        long chunk = chunkPos.pack();
-
-        LongSet chunks = PROTECTED_CHUNKS.get(world.dimension());
-
-        if (chunks != null){
-            chunks.remove(chunk);
-        }
-
+        ProtectionSavedData.get(world.getServer()).unprotectChunk(world,chunkPos);
     }
 
-    public static boolean isProtectedChunk(Level world, ChunkPos chunkPos){
+    public static boolean isProtectedChunk(ServerLevel world, ChunkPos chunkPos){
 
-        LongSet chunks = PROTECTED_CHUNKS.get(world.dimension());
+        return  ProtectionSavedData.get(world.getServer()).isProtectedChunk(world,chunkPos);
+    }
 
-        if(chunks == null) return false;
-
-        return chunks.contains(chunkPos.pack());
+    public static Map<String, Set<Long>> getProtectedChunks(ServerLevel world){
+        return ProtectionSavedData.get(world.getServer()).getProtectedChunks();
     }
 }
