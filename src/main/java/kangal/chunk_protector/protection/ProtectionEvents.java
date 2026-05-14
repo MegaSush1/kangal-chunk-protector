@@ -1,9 +1,7 @@
 package kangal.chunk_protector.protection;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
-import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.fabricmc.fabric.api.event.player.*;
 
 import net.minecraft.server.level.ServerPlayer;
 
@@ -30,27 +28,6 @@ public class ProtectionEvents {
                 }
         );
 
-        /*
-         * BLOCK PLACE
-         */
-        UseBlockCallback.EVENT.register(
-                (player, level, hand, hitResult) -> {
-
-                    if (!(player instanceof ServerPlayer serverPlayer)) {
-                        return InteractionResult.PASS;
-                    }
-
-                    if (!ProtectionUtils.canModify(
-                            serverPlayer,
-                            hitResult.getBlockPos()
-                    )) {
-
-                        return InteractionResult.FAIL;
-                    }
-
-                    return InteractionResult.PASS;
-                }
-        );
 
         /*
          * PLAYER ATTACK ENTITY
