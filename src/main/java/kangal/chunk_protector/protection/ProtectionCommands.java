@@ -4,12 +4,10 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.*;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.permissions.Permission;
 import net.minecraft.server.permissions.PermissionLevel;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.Level;
 
 import java.util.Map;
 import java.util.Set;
@@ -65,7 +63,6 @@ public class ProtectionCommands {
                                     ServerPlayer player = commandContext.getSource().getPlayer();
 
                                     assert player != null;
-                                    ChunkPos chunkPos = ChunkPos.containing(player.getOnPos());
 
                                     Map<String, Set<Long>> chunks = ProtectedChunkManager.getProtectedChunks( player.level() );
 

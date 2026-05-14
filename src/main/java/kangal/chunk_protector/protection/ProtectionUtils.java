@@ -12,7 +12,7 @@ import static kangal.chunk_protector.Kangal_chunk_protector.MOD_LOGGER;
 public class ProtectionUtils {
 
     // check if player can modify block at position
-    public static final boolean canModify(ServerPlayer player, BlockPos pos){
+    public static boolean canModify(ServerPlayer player, BlockPos pos){
 
         ChunkPos chunkPos = ChunkPos.containing(pos);
 
@@ -25,7 +25,7 @@ public class ProtectionUtils {
     }
 
     // Can
-    public static final boolean canAttack(ServerPlayer attacker, Entity target){
+    public static boolean canAttack(ServerPlayer attacker, Entity target){
 
         BlockPos target_blockPos = target.getOnPos();
         ChunkPos targetChunk = ChunkPos.containing(target_blockPos);
@@ -62,9 +62,7 @@ public class ProtectionUtils {
             BlockPos attacker_blockPos = entity.getOnPos();
             ChunkPos attackerChunk = ChunkPos.containing(attacker_blockPos);
 
-            if (ProtectedChunkManager.isProtectedChunk((ServerLevel) entity.level(), attackerChunk)) {
-                return false;
-            }
+            return !ProtectedChunkManager.isProtectedChunk((ServerLevel) entity.level(), attackerChunk);
 
         }
 

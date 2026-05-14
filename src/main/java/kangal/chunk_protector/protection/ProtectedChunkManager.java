@@ -1,9 +1,7 @@
 package kangal.chunk_protector.protection;
 
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.Level;
 
 import java.awt.*;
 import java.util.Map;
