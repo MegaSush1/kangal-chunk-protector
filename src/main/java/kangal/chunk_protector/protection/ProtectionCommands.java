@@ -16,10 +16,12 @@ public class ProtectionCommands {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
 
+        final PermissionLevel permissionlevelcommand = PermissionLevel.ADMINS;
+
         dispatcher.register(
                 Commands.literal("protectchunk")
                         .then(Commands.literal("add")
-                                .requires(source ->source.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.OWNERS)))
+                                .requires(source ->source.permissions().hasPermission(new Permission.HasCommandLevel(permissionlevelcommand)))
                                 .executes(commandContext -> {
 
                                     ServerPlayer player = commandContext.getSource().getPlayer();
@@ -38,7 +40,7 @@ public class ProtectionCommands {
                                 })
                         )
                         .then(Commands.literal("remove")
-                                .requires(source ->source.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.OWNERS)))
+                                .requires(source ->source.permissions().hasPermission(new Permission.HasCommandLevel(permissionlevelcommand)))
                                 .executes(commandContext -> {
 
                                     ServerPlayer player = commandContext.getSource().getPlayer();
@@ -57,7 +59,7 @@ public class ProtectionCommands {
                                 })
                         )
                         .then(Commands.literal("list")
-                                .requires(source ->source.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.OWNERS)))
+                                .requires(source ->source.permissions().hasPermission(new Permission.HasCommandLevel(permissionlevelcommand)))
                                 .executes(commandContext -> {
 
                                     ServerPlayer player = commandContext.getSource().getPlayer();
