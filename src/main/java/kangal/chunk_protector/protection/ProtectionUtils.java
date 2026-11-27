@@ -3,6 +3,8 @@ package kangal.chunk_protector.protection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.permissions.Permission;
+import net.minecraft.server.permissions.PermissionLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ChunkPos;
@@ -32,7 +34,7 @@ public class ProtectionUtils {
 
         //can't attack entities inside protect chunk
         if (ProtectedChunkManager.isProtectedChunk((ServerLevel) target.level(), targetChunk)) {
-            return false;
+            return bypass(attacker);
         }
 
         BlockPos attacker_blockPos = attacker.getOnPos();
@@ -70,11 +72,11 @@ public class ProtectionUtils {
     }
 
     public static boolean bypass(ServerPlayer player){
-        MOD_LOGGER.info("Entering bypass function");
+
         if (player instanceof ServerPlayer) {
-            //boolean permission = player.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.OWNERS));
-            boolean permission = false;
-            MOD_LOGGER.info("Bypassing protection permissions : "+permission);
+            boolean permission = player.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.ADMINS));
+            //boolean permission = false;
+
             return permission;
         }
         return false;
